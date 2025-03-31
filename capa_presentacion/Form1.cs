@@ -66,6 +66,7 @@ namespace capa_presentacion
             frmregis.MdiParent = this;
             abrifrm(frmregis);
             //ocultar();
+
         }
 
         private Form frmactivo = null;
