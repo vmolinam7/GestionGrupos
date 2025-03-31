@@ -1,4 +1,5 @@
-﻿using System;
+﻿using capa_datos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace capa_presentacion
 {
     public partial class Form1: Form
     {
+        csConexion csConexion;
         public Form1()
         {
             InitializeComponent();
@@ -26,6 +28,9 @@ namespace capa_presentacion
         private void Form1_Load(object sender, EventArgs e)
         {
             panel2.BackColor = Color.FromArgb(100, 0, 0, 0);
+            fmrLogin frmlogin = new fmrLogin();
+            frmlogin.MdiParent = this;
+            abrifrm(frmlogin);
         }
 
         private void label1_Click_1(object sender, EventArgs e)
@@ -102,5 +107,31 @@ namespace capa_presentacion
             abrifrm(frmregis);
         }
 
+        public void recuperarcontra()
+        {
+            frmRecuperarContra frmrecu = new frmRecuperarContra();
+            frmrecu.MdiParent = this;
+            abrifrm(frmrecu);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            csConexion = new csConexion();
+            if (csConexion.ValidarUsuario(textBox1.Text.ToString(), textBox3.Text.ToString()))
+            {
+                MessageBox.Show("Acceso correcto");
+            }
+            else
+            {
+                MessageBox.Show("Credenciales incorrectas");
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            frmgrupos frmgrup = new frmgrupos();
+            frmgrup.MdiParent = this;
+            abrifrm(frmgrup);
+        }
     }
 }
