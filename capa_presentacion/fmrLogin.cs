@@ -50,5 +50,20 @@ namespace capa_presentacion
                 MessageBox.Show("Credenciales incorrectas");
             }
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Form1 principal = Application.OpenForms["Form1"] as Form1;
+
+            if (principal != null)
+            {
+                principal.recuperarcontra();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Error: No se pudo obtener la referencia del formulario principal.");
+            }
+        }
     }
 }

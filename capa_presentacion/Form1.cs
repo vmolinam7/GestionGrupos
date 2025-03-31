@@ -107,6 +107,13 @@ namespace capa_presentacion
             abrifrm(frmregis);
         }
 
+        public void recuperarcontra()
+        {
+            frmRecuperarContra frmrecu = new frmRecuperarContra();
+            frmrecu.MdiParent = this;
+            abrifrm(frmrecu);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             csConexion = new csConexion();
