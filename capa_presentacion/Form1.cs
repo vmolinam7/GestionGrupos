@@ -126,5 +126,12 @@ namespace capa_presentacion
                 MessageBox.Show("Credenciales incorrectas");
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            frmgrupos frmgrup = new frmgrupos();
+            frmgrup.MdiParent = this;
+            abrifrm(frmgrup);
+        }
     }
 }
