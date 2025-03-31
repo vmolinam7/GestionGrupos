@@ -1,4 +1,5 @@
-﻿using System;
+﻿using capa_negocios;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,7 +30,31 @@ namespace capa_presentacion
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string email = textBox3.Text.Trim();
 
+            if (string.IsNullOrEmpty(email))
+            {
+                MessageBox.Show("Por favor, ingrese un correo electrónico.");
+                return;
+            }
+
+            CsUsuarios csUsuarios = new CsUsuarios();
+
+            if(!csUsuarios.EsEmailValido(email))
+            {
+                MessageBox.Show("Por favor, ingrese un correo válido.");
+                return;
+            }
+            bool exito = csUsuarios.recuperarContrasenia(email);
+
+            if (exito)
+            {
+                MessageBox.Show("Se ha enviado la contraseña a su correo.");
+            }
+            else
+            {
+                MessageBox.Show("El correo ingresado no está registrado.");
+            }
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

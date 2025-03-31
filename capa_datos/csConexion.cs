@@ -15,7 +15,7 @@ namespace capa_datos
         public SqlCommand cmd;
         public string usuario = "sa";
         public string contra = "12345";
-        public string bd = "BdGestionGrupos", server = ".";
+        public string bd = "dbGestionGrupos", server = ".";
         public virtual void abrirconexcion()
         {
             con = new SqlConnection();
