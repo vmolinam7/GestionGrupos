@@ -76,6 +76,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmgrupos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmgrupos.Designer.cs">
+      <DependentUpon>frmgrupos.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRegistrase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmgrupos.resx">
+      <DependentUpon>frmgrupos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRegistrase.resx">
       <DependentUpon>frmRegistrase.cs</DependentUpon>

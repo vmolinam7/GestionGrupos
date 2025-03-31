@@ -26,6 +26,9 @@ namespace capa_presentacion
         private void Form1_Load(object sender, EventArgs e)
         {
             panel2.BackColor = Color.FromArgb(100, 0, 0, 0);
+            fmrLogin frmlogin = new fmrLogin();
+            frmlogin.MdiParent = this;
+            abrifrm(frmlogin);
         }
 
         private void label1_Click_1(object sender, EventArgs e)
