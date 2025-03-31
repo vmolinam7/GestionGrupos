@@ -15,6 +15,7 @@ namespace capa_presentacion
         public Form1()
         {
             InitializeComponent();
+            this.IsMdiContainer = true;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -80,5 +81,26 @@ namespace capa_presentacion
             frmprinci.Dock = DockStyle.Fill;
             frmprinci.Show();
         }
+
+        public void AbrirFormularioDesdeHijo(Form formulario)
+        {
+            abrifrm(formulario);
+        }
+
+        public void MostrarPanelLogin()
+        {
+
+            fmrLogin frmlogin = new fmrLogin();
+            frmlogin.MdiParent = this;
+            abrifrm(frmlogin);
+        }
+
+        public void volverlogin()
+        {
+            frmRegistrase frmregis = new frmRegistrase();
+            frmregis.MdiParent = this;
+            abrifrm(frmregis);
+        }
+
     }
 }
