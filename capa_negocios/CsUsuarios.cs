@@ -15,10 +15,9 @@ namespace capa_negocios
 {
     public class CsUsuarios
     {
-        csConexion csConexion;
+        csConexion csConexion =new csConexion();
         public virtual bool registrarse(string nombres, string apellidos, string telefono, string email, string nombreUsuario, string contrasenia, int rolID)
         {
-            csConexion = new csConexion();
             string sp = "spRegistrarse";
 
             try
@@ -214,6 +213,24 @@ namespace capa_negocios
             {
                 MessageBox.Show("Error al enviar el correo: " + ex.Message);
             }
+        }
+    public void cargarvalorescombo(string searchText, System.Windows.Forms.ComboBox cbx)
+        {
+            string sp = "spObtenerUsuario";
+            csConexion.abrirconexcion();
+            csConexion.cmd = new SqlCommand(sp, csConexion.con);
+            csConexion.cmd.CommandType = CommandType.StoredProcedure;
+            csConexion.cmd.Parameters.Add(new SqlParameter("@SearchText", searchText));
+
+            SqlDataAdapter adapter = new SqlDataAdapter(csConexion.cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+
+            cbx.DisplayMember = "Nombres";
+            cbx.ValueMember = "usuarioid";
+            cbx.DataSource = dt;
+
+            csConexion.cerrarconexion();
         }
     }
 }
