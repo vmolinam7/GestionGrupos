@@ -48,6 +48,7 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.linkLabel2);
             this.panel1.Controls.Add(this.button1);
@@ -67,6 +68,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(624, 387);
             this.panel1.TabIndex = 2;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // textBox6
             // 

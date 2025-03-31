@@ -19,12 +19,22 @@ namespace capa_presentacion
 
         private void fmrLogin_Load(object sender, EventArgs e)
         {
-
+            panel2.BackColor = Color.FromArgb(100, 0, 0, 0);
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            
+            Form1 principal = Application.OpenForms["Form1"] as Form1;
+
+            if (principal != null)
+            {
+                principal.volverlogin();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Error: No se pudo obtener la referencia del formulario principal.");
+            }
         }
     }
 }

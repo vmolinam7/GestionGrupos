@@ -39,21 +39,34 @@ namespace capa_presentacion
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            frmRegistrase frmregis = new frmRegistrase();
-            frmregis.MdiParent = this;
-            abrifrm(frmregis);
+            Form1 principal = Application.OpenForms["Form1"] as Form1;
+
+            if (principal != null)
+            {
+                principal.MostrarPanelLogin();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Error: No se pudo obtener la referencia del formulario principal.");
+            }
         }
 
         private Form frmactivo = null;
         private void abrifrm(Form frmprinci)
         {
-            if (frmactivo != null) frmactivo.Close();
-            frmactivo = frmprinci;
-            panel_central.Controls.Add(frmprinci);
-            panel_central.Tag = frmprinci;
-            frmprinci.BringToFront();
-            frmprinci.Dock = DockStyle.Fill;
-            frmprinci.Show();
+            //if (frmactivo != null) frmactivo.Close();
+            //frmactivo = frmprinci;
+            //panel_central.Controls.Add(frmprinci);
+            //panel_central.Tag = frmprinci;
+            //frmprinci.BringToFront();
+            //frmprinci.Dock = DockStyle.Fill;
+            //frmprinci.Show();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
