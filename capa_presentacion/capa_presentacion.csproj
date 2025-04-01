@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -64,6 +64,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dbGestionGruposDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbGestionGruposDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="fmrLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,23 +81,76 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmgrupos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmgrupos.Designer.cs">
+      <DependentUpon>frmgrupos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPagos.Designer.cs">
+      <DependentUpon>frmPagos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmParticipaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmParticipaciones.Designer.cs">
+      <DependentUpon>frmParticipaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRecuperarContra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRecuperarContra.Designer.cs">
+      <DependentUpon>frmRecuperarContra.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRegistrase.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmRegistrase.Designer.cs">
       <DependentUpon>frmRegistrase.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmRegPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRegPago.Designer.cs">
+      <DependentUpon>frmRegPago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteGrupos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReporteGrupos.Designer.cs">
+      <DependentUpon>frmReporteGrupos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="fmrLogin.resx">
       <DependentUpon>fmrLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmgrupos.resx">
+      <DependentUpon>frmgrupos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPagos.resx">
+      <DependentUpon>frmPagos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmParticipaciones.resx">
+      <DependentUpon>frmParticipaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRecuperarContra.resx">
+      <DependentUpon>frmRecuperarContra.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmRegistrase.resx">
       <DependentUpon>frmRegistrase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRegPago.resx">
+      <DependentUpon>frmRegPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReporteGrupos.resx">
+      <DependentUpon>frmReporteGrupos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -104,6 +162,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="rptListagrupos.rdlc" />
+    <None Include="dbGestionGruposDataSet.xsc">
+      <DependentUpon>dbGestionGruposDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="dbGestionGruposDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dbGestionGruposDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dbGestionGruposDataSet.xss">
+      <DependentUpon>dbGestionGruposDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -119,6 +189,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\capa_datos\capa_datos.csproj">
+      <Project>{df989167-b310-4b57-814b-59eec589d1b8}</Project>
+      <Name>capa_datos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\capa_negocios\capa_negocios.csproj">
       <Project>{6f74ba68-ce44-4bcb-948e-b69a7e2a446c}</Project>
       <Name>capa_negocios</Name>
@@ -132,19 +206,6 @@
     <None Include="Resources\reporte.png" />
     <None Include="Resources\participe.png" />
     <None Include="Resources\avatar.png" />
-    <Content Include="SqlServerTypes\readme.htm" />
-    <Content Include="SqlServerTypes\x64\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x86\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
