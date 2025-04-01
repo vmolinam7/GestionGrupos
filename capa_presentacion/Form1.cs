@@ -27,6 +27,7 @@ namespace capa_presentacion
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            CsSesionActiva.CreadorID = 1;
             panel2.BackColor = Color.FromArgb(100, 0, 0, 0);
             fmrLogin frmlogin = new fmrLogin();
             frmlogin.MdiParent = this;
@@ -132,6 +133,16 @@ namespace capa_presentacion
             frmgrupos frmgrup = new frmgrupos();
             frmgrup.MdiParent = this;
             abrifrm(frmgrup);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

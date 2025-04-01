@@ -127,7 +127,7 @@ namespace capa_negocios
             {
                 MailMessage mail = new MailMessage();
                 //colocar correo aquí
-                mail.From = new MailAddress("tucorreo@gmail.com");
+                mail.From = new MailAddress("klausmacias881@gmail.com");
                 mail.To.Add(destinatario);
                 mail.Subject = "Recuperación de contraseña";
 
@@ -205,7 +205,7 @@ namespace capa_negocios
 
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
                 //colocar su correo y respectivo codifgo de aplicaciona aqui
-                smtp.Credentials = new NetworkCredential("tucorreo@gmail.com", "tu codgo d aplicacion de google");
+                smtp.Credentials = new NetworkCredential("klausmacias881@gmail.com", "zlio xzrg lfmk qmbq");
                 smtp.EnableSsl = true;
                 smtp.Send(mail);
             }
@@ -232,5 +232,153 @@ namespace capa_negocios
 
             csConexion.cerrarconexion();
         }
+        public void enviarCorreo(string descripcion, string destinatario, string nombreGrupo, decimal valorTotal, decimal montoIndividual, DateTime fechaCreacion)
+        {
+            try
+            {
+                MailMessage mail = new MailMessage();
+                // Colocar correo aquí
+                mail.From = new MailAddress("klausmacias881@gmail.com");
+                mail.To.Add(destinatario);
+                mail.Subject = "Notificación de Ingreso a Grupo";
+
+                string htmlBody = @"
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            line-height: 1.6;
+                            color: #333333;
+                        }
+                        .container {
+                            max-width: 600px;
+                            margin: 0 auto;
+                            padding: 20px;
+                            background-color: #f9f9f9;
+                            border-radius: 5px;
+                        }
+                        .header {
+                            background-color: #4285f4;
+                            color: white;
+                            padding: 15px;
+                            text-align: center;
+                            border-radius: 5px 5px 0 0;
+                        }
+                        .content {
+                            padding: 20px;
+                            background-color: white;
+                            border-radius: 0 0 5px 5px;
+                        }
+                        .footer {
+                            text-align: center;
+                            margin-top: 20px;
+                            font-size: 12px;
+                            color: #666666;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class='container'>
+                        <div class='header'>
+                            <h2>Notificación de Ingreso a Grupo</h2>
+                        </div>
+                        <div class='content'>
+                            <p>Estimado(a) usuario,</p>
+                            <p>Se le ha agregado al grupo <strong>" + nombreGrupo + @"</strong>. A continuación, se detallan los datos del grupo:</p>
+                            <ul>
+                                <li><strong>Descripción:</strong> " + descripcion.Trim() + @"</li>
+                                <li><strong>Valor Total:</strong> $" + valorTotal.ToString("N2") + @"</li>
+                                <li><strong>Monto Individual:</strong> $" + montoIndividual.ToString("N2") + @"</li>
+                                <li><strong>Fecha de Creación:</strong> " + fechaCreacion.ToString("dd/MM/yyyy") + @"</li>
+                            </ul>
+                            <p>Por favor, revise los detalles y esté atento a futuras notificaciones.</p>
+                            <p>Saludos cordiales,<br>El Equipo de Gestión de Grupos</p>
+                        </div>
+                        <div class='footer'>
+                            <p>Este es un correo automático, por favor no responda a este mensaje.</p>
+                        </div>
+                    </div>
+                </body>
+                </html>";
+
+                mail.Body = htmlBody;
+                mail.IsBodyHtml = true;
+
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                // Colocar su correo y respectivo código de aplicación aquí
+                smtp.Credentials = new NetworkCredential("klausmacias881@gmail.com", "zlio xzrg lfmk qmbq");
+                smtp.EnableSsl = true;
+                smtp.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al enviar el correo: " + ex.Message);
+            }
+        }
+        public string ObtenerCorreoElectronico(int usuarioID)
+        {
+            try
+            {
+                csConexion.abrirconexcion();
+
+                using (SqlCommand command = new SqlCommand("spBuscarCorreo", csConexion.con))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@UsuarioID", usuarioID);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return reader["EMAIL"].ToString().Trim();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener el correo electrónico: " + ex.Message);
+            }
+            finally
+            {
+                // Cerrar la conexión usando CsConexion
+                csConexion.cerrarconexion();
+            }
+
+            return null;
+        }
+        //public string ObtenerNombreCompleto(int usuarioID)
+        //{
+        //    try
+        //    {
+        //        csConexion.abrirconexcion();
+
+        //        using (SqlCommand command = new SqlCommand("spBuscarNombrePorUsuarioID", csConexion.con))
+        //        {
+        //            command.CommandType = CommandType.StoredProcedure;
+        //            command.Parameters.AddWithValue("@UsuarioID", usuarioID);
+
+        //            using (SqlDataReader reader = command.ExecuteReader())
+        //            {
+        //                if (reader.Read())
+        //                {
+        //                    return reader["NombreCompleto"].ToString().Trim();
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error al obtener el nombre completo: " + ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        csConexion.cerrarconexion();
+        //    }
+
+        //    return null;
+        //}
     }
 }
