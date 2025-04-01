@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="csDetalleGrupo.cs" />
     <Compile Include="CsGrupos.cs" />
+    <Compile Include="CsPagos.cs" />
     <Compile Include="CsUsuarios.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
