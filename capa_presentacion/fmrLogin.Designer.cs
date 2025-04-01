@@ -83,6 +83,7 @@
             this.textBox3.Size = new System.Drawing.Size(214, 40);
             this.textBox3.TabIndex = 7;
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
             // linkLabel1
             // 
@@ -167,6 +168,7 @@
             this.textBox1.Size = new System.Drawing.Size(214, 40);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // fmrLogin
             // 

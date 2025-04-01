@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using capa_datos;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace capa_presentacion
 {
@@ -22,6 +23,7 @@ namespace capa_presentacion
         private void fmrLogin_Load(object sender, EventArgs e)
         {
             panel2.BackColor = Color.FromArgb(100, 0, 0, 0);
+            textBox1.Focus();
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -40,6 +42,11 @@ namespace capa_presentacion
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+            validar_usuario();
+        }
+
+        private void validar_usuario()
         {
             csConexion = new csConexion();
             if (csConexion.ValidarUsuario(textBox1.Text.ToString(), textBox3.Text.ToString()))
@@ -68,6 +75,24 @@ namespace capa_presentacion
             else
             {
                 MessageBox.Show("Error: No se pudo obtener la referencia del formulario principal.");
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                textBox3.Focus();
+            }
+        }
+
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                validar_usuario();
             }
         }
     }

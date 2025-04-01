@@ -50,6 +50,9 @@ namespace capa_presentacion
             if (exito)
             {
                 MessageBox.Show("Se ha enviado la contraseña a su correo.");
+                Form1 principal = Application.OpenForms["Form1"] as Form1;
+                principal.MostrarPanelLogin();
+                this.Close();
             }
             else
             {
@@ -75,6 +78,7 @@ namespace capa_presentacion
         private void frmRecuperarContra_Load(object sender, EventArgs e)
         {
             panel2.BackColor = Color.FromArgb(100, 0, 0, 0);
+            textBox3.Focus();
         }
     }
 }

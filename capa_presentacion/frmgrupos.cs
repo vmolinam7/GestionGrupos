@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using capa_datos;
 using capa_negocios;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 
 namespace capa_presentacion
 {
@@ -161,6 +162,7 @@ namespace capa_presentacion
             InicializarDataGridView();
             AgregarUsuarioLogueadoAlDataGridView();
             csEstilosDgv.AplicarEstilos(dataGridView1);
+            textBox1.Focus();
         }
 
         frmParticipaciones frmpart = new frmParticipaciones();
@@ -291,6 +293,42 @@ namespace capa_presentacion
                         row.Cells["MontoPagar"].Value = 0;
                     }
                 }
+            }
+        }
+
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == '.' && (sender as System.Windows.Forms.TextBox).Text.Contains("."))
+            {
+                e.Handled = true;
+            }
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                comboBox1.Focus();
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                textBox2.Focus();
+            }
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                textBox3.Focus();
             }
         }
     }
