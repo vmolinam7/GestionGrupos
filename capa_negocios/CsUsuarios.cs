@@ -213,9 +213,7 @@ namespace capa_negocios
                 MessageBox.Show("Error al enviar el correo: " + ex.Message);
             }
         }
-    public void cargarvalorescombo(string searchText, System.Windows.Forms.ComboBox cbx)
-    public void cargarvalorescombo(string searchText, System.Windows.Forms.ComboBox cbx)
-    public void cargarvalorescombo(string searchText, System.Windows.Forms.ComboBox cbx)
+
     public void cargarvalorescombo(string searchText, System.Windows.Forms.ComboBox cbx)
         {
             string sp = "spObtenerUsuario";

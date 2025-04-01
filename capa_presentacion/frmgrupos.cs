@@ -59,5 +59,10 @@ namespace capa_presentacion
         {
 
         }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
