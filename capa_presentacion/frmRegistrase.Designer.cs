@@ -102,8 +102,10 @@
             this.textBox6.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.textBox6.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox6.Location = new System.Drawing.Point(361, 203);
+            this.textBox6.MaxLength = 50;
             this.textBox6.Multiline = true;
             this.textBox6.Name = "textBox6";
+            this.textBox6.PasswordChar = '*';
             this.textBox6.Size = new System.Drawing.Size(214, 40);
             this.textBox6.TabIndex = 19;
             this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -152,6 +154,7 @@
             this.textBox4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.textBox4.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.Location = new System.Drawing.Point(361, 124);
+            this.textBox4.MaxLength = 150;
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(214, 40);
@@ -176,11 +179,13 @@
             this.textBox2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.textBox2.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(55, 124);
+            this.textBox2.MaxLength = 10;
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(214, 40);
             this.textBox2.TabIndex = 13;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
             // label1
             // 

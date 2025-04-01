@@ -145,7 +145,7 @@ namespace capa_presentacion
 
             if (!usuarios.EsTelefonoValido(telefono))
             {
-                MessageBox.Show("El número de teléfono debe contener solo dígitos y tener entre 7 y 15 caracteres.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El número de teléfono debe contener solo dígitos y tener entre 7 y 10 caracteres.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -164,6 +164,14 @@ namespace capa_presentacion
             else
             {
                 MessageBox.Show("No se pudo registrar. Verifique sus datos.");
+            }
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
             }
         }
     }

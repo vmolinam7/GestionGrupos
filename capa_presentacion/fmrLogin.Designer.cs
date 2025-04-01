@@ -79,10 +79,10 @@
             this.textBox3.Location = new System.Drawing.Point(50, 154);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
+            this.textBox3.PasswordChar = '*';
             this.textBox3.Size = new System.Drawing.Size(214, 40);
             this.textBox3.TabIndex = 7;
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox3.UseSystemPasswordChar = true;
             // 
             // linkLabel1
             // 
