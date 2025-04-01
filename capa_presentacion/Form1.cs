@@ -28,6 +28,7 @@ namespace capa_presentacion
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            CsSesionActiva.CreadorID = 1;
             panel2.BackColor = Color.FromArgb(100, 0, 0, 0);
             fmrLogin frmlogin = new fmrLogin();
             frmlogin.MdiParent = this;
