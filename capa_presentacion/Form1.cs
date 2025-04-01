@@ -208,17 +208,19 @@ namespace capa_presentacion
         }
         private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
-            // Configuración de márgenes y dimensiones
-            int margin = 50;
-            int y = margin;
-            int pageWidth = e.PageBounds.Width - (margin * 2);
+            // Configuración de márgenes y dimensiones - usando márgenes equilibrados
+            int marginLeft = 40;
+            int marginRight = 40;
+            int marginTop = 50;
+            int y = marginTop;
+            int pageWidth = e.PageBounds.Width - (marginLeft + marginRight);
             Font regularFont = new Font("Arial", 10);
             Font titleFont = new Font("Arial", 16, FontStyle.Bold);
-            Font headerFont = new Font("Arial", 11, FontStyle.Bold);
+            Font headerFont = new Font("Arial", 10, FontStyle.Bold);  // Reducido ligeramente el tamaño
             StringFormat stringFormat = new StringFormat()
             {
                 Trimming = StringTrimming.EllipsisCharacter,
-                Alignment = StringAlignment.Near,
+                Alignment = StringAlignment.Center,
                 LineAlignment = StringAlignment.Center
             };
 
@@ -226,66 +228,72 @@ namespace capa_presentacion
             int numColumns = dt.Columns.Count;
             int[] columnWidths = new int[numColumns];
 
-            // Calcular ancho adaptativo de columnas basado en el contenido
+            // Definir anchos relativos para cada columna (porcentajes del ancho disponible)
+            // Esto nos ayudará a distribuir el espacio de manera más proporcional
+            Dictionary<string, float> columnWidthPercentages = new Dictionary<string, float>(StringComparer.OrdinalIgnoreCase)
+    {
+        { "GRUPOID", 0.08f },        // 8% del ancho total
+        { "NOMBRE_GRUPO", 0.15f },   // 15% del ancho total
+        { "DESCRIPCIÓN", 0.22f },    // 22% del ancho total
+        { "FECHACREACION", 0.15f },  // 15% del ancho total
+        { "ESTADO", 0.10f },         // 10% del ancho total
+        { "VALORTOTAL", 0.10f },     // 10% del ancho total
+        { "CREADOR", 0.20f }         // 20% del ancho total
+    };
+
+            // Primer paso: asignar anchos basados en porcentajes
             for (int i = 0; i < numColumns; i++)
             {
                 string columnName = dt.Columns[i].ColumnName;
-                int headerWidth = (int)e.Graphics.MeasureString(columnName, headerFont).Width + 20;
-
-                // Encontrar el ancho máximo de texto en esta columna
-                int maxContentWidth = 0;
-                foreach (DataRow row in dt.Rows)
+                if (columnWidthPercentages.ContainsKey(columnName))
                 {
-                    string cellText = row[i].ToString();
-                    int cellWidth = (int)e.Graphics.MeasureString(cellText, regularFont).Width + 20;
-                    maxContentWidth = Math.Max(maxContentWidth, cellWidth);
+                    columnWidths[i] = (int)(pageWidth * columnWidthPercentages[columnName]);
                 }
-
-                // Usar el mayor entre el ancho del encabezado y el contenido, con un máximo razonable
-                columnWidths[i] = Math.Min(Math.Max(headerWidth, maxContentWidth), 250);
+                else
+                {
+                    // Si no está definido, asignar un porcentaje predeterminado
+                    columnWidths[i] = (int)(pageWidth * 0.14f); // ~14% como valor predeterminado
+                }
             }
 
-            // Si el total excede el ancho de página, ajustar proporcionalmente
-            int totalWidth = columnWidths.Sum();
-            if (totalWidth > pageWidth)
+            // Segundo paso: asegurarse de que el ancho total coincida con el ancho de página disponible
+            int totalCalculatedWidth = columnWidths.Sum();
+            if (totalCalculatedWidth != pageWidth)
             {
-                float ratio = (float)pageWidth / totalWidth;
-                for (int i = 0; i < numColumns; i++)
-                {
-                    columnWidths[i] = (int)(columnWidths[i] * ratio);
-                }
+                // Ajustar la última columna para compensar cualquier diferencia
+                columnWidths[numColumns - 1] += (pageWidth - totalCalculatedWidth);
             }
 
             // Dibujar el logo y el título en la misma fila
             if (logo != null)
             {
-                int logoHeight = 80;
-                int logoWidth = 80;
+                int logoHeight = 70;
+                int logoWidth = 70;
 
                 // Dibujar logo a la izquierda
-                e.Graphics.DrawImage(logo, margin, y, logoWidth, logoHeight);
+                e.Graphics.DrawImage(logo, marginLeft, y, logoWidth, logoHeight);
 
                 // Dibujar título centrado verticalmente junto al logo
                 e.Graphics.DrawString("Reporte de Grupos", titleFont, Brushes.Black,
-                    margin + logoWidth + 20, y + (logoHeight / 2) - (titleFont.Height / 2));
+                    marginLeft + logoWidth + 20, y + (logoHeight / 2) - (titleFont.Height / 2));
 
                 y += logoHeight + 20; // Espacio después del logo y título
             }
             else
             {
                 // Solo título si no hay logo
-                e.Graphics.DrawString("Reporte de Grupos", titleFont, Brushes.Black, margin, y);
+                e.Graphics.DrawString("Reporte de Grupos", titleFont, Brushes.Black, marginLeft, y);
                 y += titleFont.Height + 20;
             }
 
             // Dibujar fecha y hora del reporte
             string dateTime = "Fecha: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm");
-            e.Graphics.DrawString(dateTime, regularFont, Brushes.Black, margin, y);
+            e.Graphics.DrawString(dateTime, regularFont, Brushes.Black, marginLeft, y);
             y += regularFont.Height + 15;
 
             // Dibujar encabezados de columnas
-            int x = margin;
-            int headerHeight = 35;
+            int x = marginLeft;
+            int headerHeight = 35; // Altura razonable para las cabeceras
 
             for (int i = 0; i < numColumns; i++)
             {
@@ -295,9 +303,31 @@ namespace capa_presentacion
                 e.Graphics.FillRectangle(Brushes.LightGray, headerRect);
                 e.Graphics.DrawRectangle(Pens.Black, headerRect);
 
-                // Dibujar texto de encabezado con formato
-                e.Graphics.DrawString(dt.Columns[i].ColumnName, headerFont, Brushes.Black,
-                    headerRect, stringFormat);
+                // Obtener el texto de la cabecera y aplicar formato si es necesario
+                string headerText = dt.Columns[i].ColumnName;
+
+                // Para FECHACREACION, dividir en dos líneas para mejor presentación
+                if (headerText.Equals("FECHACREACION", StringComparison.OrdinalIgnoreCase))
+                {
+                    headerText = "FECHA-\r\nCREACION";
+                }
+                else if (headerText.Equals("VALORTOTAL", StringComparison.OrdinalIgnoreCase))
+                {
+                    headerText = "VALOR\r\nTOTAL";
+                }
+
+                // Formato para permitir múltiples líneas en cabeceras
+                StringFormat headerFormat = new StringFormat()
+                {
+                    Trimming = StringTrimming.EllipsisCharacter,
+                    Alignment = StringAlignment.Center,
+                    LineAlignment = StringAlignment.Center,
+                    FormatFlags = StringFormatFlags.NoClip
+                };
+
+                e.Graphics.DrawString(headerText, headerFont, Brushes.Black,
+                    new RectangleF(headerRect.X + 2, headerRect.Y + 2, headerRect.Width - 4, headerRect.Height - 4),
+                    headerFormat);
 
                 x += columnWidths[i];
             }
@@ -305,7 +335,7 @@ namespace capa_presentacion
             y += headerHeight;
 
             // Imprimir filas de datos
-            int rowHeight = 30;
+            int rowHeight = 25; // Reducir ligeramente la altura predeterminada
             for (; rowIndex < dt.Rows.Count; rowIndex++)
             {
                 // Verificar si queda espacio en la página
@@ -315,7 +345,7 @@ namespace capa_presentacion
                     return;
                 }
 
-                x = margin;
+                x = marginLeft;
 
                 // Calcular altura de fila basada en contenido
                 int maxCellHeight = rowHeight;
@@ -323,7 +353,7 @@ namespace capa_presentacion
                 {
                     string cellText = dt.Rows[rowIndex][i].ToString();
                     SizeF textSize = e.Graphics.MeasureString(cellText, regularFont, columnWidths[i] - 10);
-                    int requiredHeight = (int)textSize.Height + 10;
+                    int requiredHeight = (int)textSize.Height + 6; // Reducir padding vertical
                     maxCellHeight = Math.Max(maxCellHeight, requiredHeight);
                 }
 
@@ -340,7 +370,7 @@ namespace capa_presentacion
                     StringFormat cellFormat = new StringFormat()
                     {
                         Trimming = StringTrimming.EllipsisCharacter,
-                        Alignment = StringAlignment.Near,
+                        Alignment = StringAlignment.Center,
                         LineAlignment = StringAlignment.Center
                     };
 
@@ -359,8 +389,8 @@ namespace capa_presentacion
             string pageFooter = "Página " + (pageNumber + 1);
             SizeF footerSize = e.Graphics.MeasureString(pageFooter, regularFont);
             e.Graphics.DrawString(pageFooter, regularFont, Brushes.Black,
-                e.PageBounds.Width - margin - footerSize.Width,
-                e.PageBounds.Height - margin - footerSize.Height);
+                e.PageBounds.Width - marginRight - footerSize.Width,
+                e.PageBounds.Height - marginTop - footerSize.Height);
 
             if (rowIndex >= dt.Rows.Count)
             {
