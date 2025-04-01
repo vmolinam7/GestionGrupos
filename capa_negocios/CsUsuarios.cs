@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using capa_datos;
+using System.Net.Mail;
+using System.Net;
 
 namespace capa_negocios
 {

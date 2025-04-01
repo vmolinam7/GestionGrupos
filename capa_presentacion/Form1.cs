@@ -134,10 +134,5 @@ namespace capa_presentacion
             frmgrup.MdiParent = this;
             abrifrm(frmgrup);
         }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
