@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Reporting.WinForms;
 
 namespace capa_presentacion
 {
@@ -132,6 +133,11 @@ namespace capa_presentacion
             frmgrupos frmgrup = new frmgrupos();
             frmgrup.MdiParent = this;
             abrifrm(frmgrup);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
