@@ -107,7 +107,6 @@ namespace capa_datos
 
     public class CsSesionActiva
     {
-
         public static string User { get; set; }
         public static string Rol { get; set; }
 

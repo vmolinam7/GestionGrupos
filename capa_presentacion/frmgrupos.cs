@@ -80,7 +80,7 @@ namespace capa_presentacion
             }
 
             int usuarioID = Convert.ToInt32(comboBox1.SelectedValue);
-            string nombreCompleto = comboBox1.Text;
+            string nombreCompleto = comboBox1.Text.Trim(); ;
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
@@ -100,6 +100,7 @@ namespace capa_presentacion
             ActualizarMontosTodos();
 
             comboBox1.SelectedIndex = -1;
+            dataGridView1.ClearSelection();
         }
 
         private void InicializarDataGridView()
@@ -159,7 +160,12 @@ namespace capa_presentacion
         {
             InicializarDataGridView();
             AgregarUsuarioLogueadoAlDataGridView();
+            csEstilosDgv.AplicarEstilos(dataGridView1);
         }
+
+        frmParticipaciones frmpart = new frmParticipaciones();
+
+        
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {

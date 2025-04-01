@@ -64,6 +64,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dbGestionGruposDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbGestionGruposDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="fmrLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +87,18 @@
     <Compile Include="frmgrupos.Designer.cs">
       <DependentUpon>frmgrupos.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPagos.Designer.cs">
+      <DependentUpon>frmPagos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmParticipaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmParticipaciones.Designer.cs">
+      <DependentUpon>frmParticipaciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRecuperarContra.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +111,18 @@
     <Compile Include="frmRegistrase.Designer.cs">
       <DependentUpon>frmRegistrase.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmRegPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRegPago.Designer.cs">
+      <DependentUpon>frmRegPago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteGrupos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReporteGrupos.Designer.cs">
+      <DependentUpon>frmReporteGrupos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="fmrLogin.resx">
@@ -105,11 +134,23 @@
     <EmbeddedResource Include="frmgrupos.resx">
       <DependentUpon>frmgrupos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPagos.resx">
+      <DependentUpon>frmPagos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmParticipaciones.resx">
+      <DependentUpon>frmParticipaciones.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmRecuperarContra.resx">
       <DependentUpon>frmRecuperarContra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRegistrase.resx">
       <DependentUpon>frmRegistrase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRegPago.resx">
+      <DependentUpon>frmRegPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReporteGrupos.resx">
+      <DependentUpon>frmReporteGrupos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -121,6 +162,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="rptListagrupos.rdlc" />
+    <None Include="dbGestionGruposDataSet.xsc">
+      <DependentUpon>dbGestionGruposDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="dbGestionGruposDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dbGestionGruposDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dbGestionGruposDataSet.xss">
+      <DependentUpon>dbGestionGruposDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

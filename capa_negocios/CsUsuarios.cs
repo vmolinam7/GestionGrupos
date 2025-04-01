@@ -15,7 +15,7 @@ namespace capa_negocios
 {
     public class CsUsuarios
     {
-        csConexion csConexion =new csConexion();
+        csConexion csConexion = new csConexion();
         public virtual bool registrarse(string nombres, string apellidos, string telefono, string email, string nombreUsuario, string contrasenia, int rolID)
         {
             string sp = "spRegistrarse";
@@ -214,6 +214,7 @@ namespace capa_negocios
                 MessageBox.Show("Error al enviar el correo: " + ex.Message);
             }
         }
+
     public void cargarvalorescombo(string searchText, System.Windows.Forms.ComboBox cbx)
         {
             string sp = "spObtenerUsuario";
