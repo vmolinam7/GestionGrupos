@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -84,6 +85,8 @@ namespace capa_datos
                     {
                         CsSesionActiva.CreadorID = (int)outputUsuarioID.Value;
                         CsSesionActiva.User= outputUser.Value.ToString();
+                        CsSesionActiva.Nombre = outputNombreVendedor.Value.ToString();
+                        CsSesionActiva.Apellido=outputApellido.Value.ToString();
                         return true;
                     }
                     return false;
@@ -107,6 +110,9 @@ namespace capa_datos
 
         public static string User { get; set; }
         public static string Rol { get; set; }
+
+        public static string Nombre { get; set; }
+        public static string Apellido { get; set; }
 
         public static int CreadorID { get; set; }
     }

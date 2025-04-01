@@ -349,5 +349,36 @@ namespace capa_negocios
 
             return null;
         }
+        //public string ObtenerNombreCompleto(int usuarioID)
+        //{
+        //    try
+        //    {
+        //        csConexion.abrirconexcion();
+
+        //        using (SqlCommand command = new SqlCommand("spBuscarNombrePorUsuarioID", csConexion.con))
+        //        {
+        //            command.CommandType = CommandType.StoredProcedure;
+        //            command.Parameters.AddWithValue("@UsuarioID", usuarioID);
+
+        //            using (SqlDataReader reader = command.ExecuteReader())
+        //            {
+        //                if (reader.Read())
+        //                {
+        //                    return reader["NombreCompleto"].ToString().Trim();
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error al obtener el nombre completo: " + ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        csConexion.cerrarconexion();
+        //    }
+
+        //    return null;
+        //}
     }
 }

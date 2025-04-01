@@ -163,6 +163,7 @@
             this.button4.TabIndex = 5;
             this.button4.Text = "Reportes";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // pictureBox4
             // 
@@ -377,6 +378,7 @@
             this.button1.TabIndex = 5;
             this.button1.Text = "Iniciar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // label4
             // 

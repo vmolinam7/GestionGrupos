@@ -72,6 +72,12 @@ namespace capa_presentacion
                                "Información requerida", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+            if (string.IsNullOrEmpty(textBox3.Text))
+            {
+                MessageBox.Show("Por favor, primero ingrese una cantidad para continuar.",
+                               "Información requerida", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
             int usuarioID = Convert.ToInt32(comboBox1.SelectedValue);
             string nombreCompleto = comboBox1.Text;
@@ -130,12 +136,13 @@ namespace capa_presentacion
             }
 
             int cantidadParticipantes = dataGridView1.Rows.Count;
+
             if (cantidadParticipantes == 0)
             {
                 return montoTotal;
             }
 
-            return Math.Round(montoTotal / (cantidadParticipantes + 1), 2);
+            return Math.Round(montoTotal / cantidadParticipantes, 2);
         }
 
         private void ActualizarMontosTodos()
@@ -151,6 +158,7 @@ namespace capa_presentacion
         private void frmgrupos_Load(object sender, EventArgs e)
         {
             InicializarDataGridView();
+            AgregarUsuarioLogueadoAlDataGridView();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -243,6 +251,40 @@ namespace capa_presentacion
             {
                 MessageBox.Show("Error al crear el grupo: " + ex.Message,
                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void AgregarUsuarioLogueadoAlDataGridView()
+        {
+            try
+            {
+                int creadorID = CsSesionActiva.CreadorID;
+                decimal montoPorPersona = CalcularMontoPorParticipante();
+
+                dataGridView1.Rows.Add(creadorID, CsSesionActiva.Nombre.ToString() + " " + CsSesionActiva.Apellido.ToString(), montoPorPersona);
+
+                ActualizarMontosTodos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al agregar el usuario logueado: " + ex.Message);
+            }
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(textBox3.Text, out decimal valorTotal) && valorTotal > 0)
+            {
+                ActualizarMontosTodos();
+            }
+            else
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (!row.IsNewRow)
+                    {
+                        row.Cells["MontoPagar"].Value = 0;
+                    }
+                }
             }
         }
     }
