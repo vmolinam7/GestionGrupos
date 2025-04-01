@@ -16,5 +16,11 @@ namespace capa_presentacion
         {
             InitializeComponent();
         }
+
+        private void frmPagos_Load(object sender, EventArgs e)
+        {
+
+            csEstilosDgv.AplicarEstilos(dataGridView1);
+        }
     }
 }
