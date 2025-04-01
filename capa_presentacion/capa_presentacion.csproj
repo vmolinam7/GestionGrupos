@@ -64,7 +64,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="csEstilosDgv.cs" />
+    <Compile Include="dbGestionGruposDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbGestionGruposDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="fmrLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +111,12 @@
     <Compile Include="frmRegistrase.Designer.cs">
       <DependentUpon>frmRegistrase.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReporteGrupos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReporteGrupos.Designer.cs">
+      <DependentUpon>frmReporteGrupos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="fmrLogin.resx">
@@ -130,6 +140,9 @@
     <EmbeddedResource Include="frmRegistrase.resx">
       <DependentUpon>frmRegistrase.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmReporteGrupos.resx">
+      <DependentUpon>frmReporteGrupos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -140,6 +153,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="rptListagrupos.rdlc" />
+    <None Include="dbGestionGruposDataSet.xsc">
+      <DependentUpon>dbGestionGruposDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="dbGestionGruposDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dbGestionGruposDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dbGestionGruposDataSet.xss">
+      <DependentUpon>dbGestionGruposDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

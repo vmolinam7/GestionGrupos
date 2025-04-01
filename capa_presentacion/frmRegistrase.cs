@@ -54,7 +54,7 @@ namespace capa_presentacion
             }
         }
 
-        private Form frmactivo = null;
+        //private Form frmactivo = null;
         private void abrifrm(Form frmprinci)
         {
             //if (frmactivo != null) frmactivo.Close();

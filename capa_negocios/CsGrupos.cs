@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using capa_datos;
+using Microsoft.Reporting.WinForms;
 
 namespace capa_negocios
 {
@@ -68,6 +68,33 @@ namespace capa_negocios
                 csConexion.cerrarconexion();
             }
         }
-        
+
+        public DataTable ObtenerDatosGrupo(int id)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                csConexion.abrirconexcion();
+
+                using (SqlCommand cmd = new SqlCommand("spListarGruposUsuario", csConexion.con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al obtener datos: " + ex.Message);
+            }
+            finally
+            {
+                csConexion.cerrarconexion();
+            }
+
+            return dt;
+        }
     }
 }
