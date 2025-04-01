@@ -80,7 +80,7 @@ namespace capa_presentacion
             }
 
             int usuarioID = Convert.ToInt32(comboBox1.SelectedValue);
-            string nombreCompleto = comboBox1.Text;
+            string nombreCompleto = comboBox1.Text.Trim(); ;
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
