@@ -47,6 +47,12 @@ namespace capa_datos
                     };
                     cmd.Parameters.Add(outputUsuarioID);
 
+                    SqlParameter outputUser = new SqlParameter("@User", SqlDbType.NVarChar,50)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(outputUser);
+
                     SqlParameter outputResultado = new SqlParameter("@Resultado", SqlDbType.Int)
                     {
                         Direction = ParameterDirection.Output
@@ -76,11 +82,11 @@ namespace capa_datos
                     int result = (int)outputResultado.Value;
                     if (result == 1)
                     {
-                        //CsSesionActiva.NombreVendedor = outputNombreVendedor.Value.ToString();
-                        //CsSesionActiva.Rol = outputRol.Value.ToString();
+                        CsSesionActiva.CreadorID = (int)outputUsuarioID.Value;
+                        CsSesionActiva.User= outputUser.Value.ToString();
                         return true;
                     }
-                    return false; // Si no es válido
+                    return false;
                 }
             }
             catch (Exception ex)
@@ -94,5 +100,14 @@ namespace capa_datos
             }
         }
 
+    }
+
+    public class CsSesionActiva
+    {
+
+        public static string User { get; set; }
+        public static string Rol { get; set; }
+
+        public static int CreadorID { get; set; }
     }
 }
