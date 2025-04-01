@@ -94,6 +94,7 @@ namespace capa_presentacion
             ActualizarMontosTodos();
 
             comboBox1.SelectedIndex = -1;
+            dataGridView1.ClearSelection();
         }
 
         private void InicializarDataGridView()
@@ -151,7 +152,12 @@ namespace capa_presentacion
         private void frmgrupos_Load(object sender, EventArgs e)
         {
             InicializarDataGridView();
+            csEstilosDgv.AplicarEstilos(dataGridView1);
         }
+
+        frmParticipaciones frmpart = new frmParticipaciones();
+
+        
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -244,11 +250,6 @@ namespace capa_presentacion
                 MessageBox.Show("Error al crear el grupo: " + ex.Message,
                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

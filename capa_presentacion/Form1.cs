@@ -134,5 +134,19 @@ namespace capa_presentacion
             frmgrup.MdiParent = this;
             abrifrm(frmgrup);
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            frmParticipaciones frmpart = new frmParticipaciones();
+            frmpart.MdiParent = this;
+            abrifrm(frmpart);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            frmPagos frmpa = new frmPagos();
+            frmpa.MdiParent = this;
+            abrifrm(frmpa);
+        }
     }
 }

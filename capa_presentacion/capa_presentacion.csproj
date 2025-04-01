@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="csEstilosDgv.cs" />
     <Compile Include="fmrLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +82,18 @@
     </Compile>
     <Compile Include="frmgrupos.Designer.cs">
       <DependentUpon>frmgrupos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPagos.Designer.cs">
+      <DependentUpon>frmPagos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmParticipaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmParticipaciones.Designer.cs">
+      <DependentUpon>frmParticipaciones.cs</DependentUpon>
     </Compile>
     <Compile Include="frmRecuperarContra.cs">
       <SubType>Form</SubType>
@@ -104,6 +117,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmgrupos.resx">
       <DependentUpon>frmgrupos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPagos.resx">
+      <DependentUpon>frmPagos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmParticipaciones.resx">
+      <DependentUpon>frmParticipaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRecuperarContra.resx">
       <DependentUpon>frmRecuperarContra.cs</DependentUpon>
