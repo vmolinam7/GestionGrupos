@@ -45,7 +45,12 @@ namespace capa_presentacion
             if (csConexion.ValidarUsuario(textBox1.Text.ToString(), textBox3.Text.ToString()))
             {
                 MessageBox.Show("Acceso correcto");
-            }else
+                Form1 principal = Application.OpenForms["Form1"] as Form1;
+                principal.modificar_nombre_user();
+                principal.mostrar();
+                this.Close();
+            }
+            else
             {
                 MessageBox.Show("Credenciales incorrectas");
             }
