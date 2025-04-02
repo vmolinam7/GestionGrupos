@@ -76,7 +76,7 @@ namespace capa_negocios
             {
                 csConexion.abrirconexcion();
 
-                using (SqlCommand cmd = new SqlCommand("spListarGruposUsuario", csConexion.con))
+                using (SqlCommand cmd = new SqlCommand("spListarGruposUsuarioestado", csConexion.con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@id", id);
