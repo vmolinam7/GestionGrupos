@@ -110,7 +110,15 @@ namespace capa_presentacion
 
             dataGridView1.Columns.Add("UsuarioID", "ID");
             dataGridView1.Columns.Add("NombreCompleto", "Nombre del Participante");
-            dataGridView1.Columns.Add("MontoPagar", "Monto a Pagar");
+            DataGridViewTextBoxColumn montoColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = "MontoPagar",
+                HeaderText = "Monto a Pagar",
+                ValueType = typeof(decimal) 
+            };
+            dataGridView1.Columns.Add(montoColumn);
+
+            dataGridView1.Columns["MontoPagar"].DefaultCellStyle.Format = "N2";
 
             DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
             btnEliminar.HeaderText = "Eliminar";
@@ -298,15 +306,59 @@ namespace capa_presentacion
 
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != '.')
+            System.Windows.Forms.TextBox txt = sender as System.Windows.Forms.TextBox;
+
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != ',')
             {
                 e.Handled = true;
+                return;
             }
 
-            if (e.KeyChar == '.' && (sender as System.Windows.Forms.TextBox).Text.Contains("."))
+            if (e.KeyChar == ',' && txt.Text.Contains(","))
             {
                 e.Handled = true;
+                return;
             }
+
+            if (txt.Text.Contains(","))
+            {
+                int indexDecimal = txt.Text.IndexOf(",");
+                if (txt.SelectionStart > indexDecimal && txt.Text.Substring(indexDecimal + 1).Length >= 2 && e.KeyChar != (char)Keys.Back)
+                {
+                    e.Handled = true;
+                    return;
+                }
+            }
+
+            if ((!txt.Text.Contains(",") || txt.SelectionStart <= txt.Text.IndexOf(",")) &&
+                e.KeyChar != (char)Keys.Back && e.KeyChar != ',')
+            {
+                string parteEntera = txt.Text;
+                if (txt.Text.Contains(","))
+                {
+                    parteEntera = txt.Text.Substring(0, txt.Text.IndexOf(","));
+                }
+
+                int selectionLength = txt.SelectionLength;
+                if (selectionLength > 0)
+                {
+                    int selStartToComma = txt.Text.Contains(",") && txt.SelectionStart < txt.Text.IndexOf(",")
+                        ? Math.Min(selectionLength, txt.Text.IndexOf(",") - txt.SelectionStart)
+                        : selectionLength;
+
+                    if (parteEntera.Length - selStartToComma + 1 > 8)
+                    {
+                        e.Handled = true;
+                        return;
+                    }
+                }
+                else if (parteEntera.Length >= 8)
+                {
+                    e.Handled = true;
+                    return;
+                }
+            }
+
             if (e.KeyChar == (char)Keys.Enter)
             {
                 e.Handled = true;
